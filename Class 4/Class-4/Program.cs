@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices.Marshalling;
 using System.Threading;
 
-namespace Clase_4
+namespace Class_4
 {
     internal class Program
     {

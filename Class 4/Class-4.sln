@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clase-4", "Clase-4\Clase-4.csproj", "{BA0EE728-BAE6-438F-9355-5F35845675F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class-4", "Class-4\Class-4.csproj", "{BA0EE728-BAE6-438F-9355-5F35845675F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
