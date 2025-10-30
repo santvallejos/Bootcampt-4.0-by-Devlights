@@ -1,4 +1,4 @@
-<img src="./imgs/Captura de pantalla 2025-10-29 a la(s) 10.08.53 p. m..png" alt="Bootcamp-4.0-by-Devlights"/>
+<img src="./imgs/banner.png" alt="Bootcamp-4.0-by-Devlights"/>
 
 Exercises and activities from the Bootcamp 4.0 by Devlights
 
