@@ -166,50 +166,30 @@ namespace Class_4
                         string productToAdd = GetValidString("Ingrese el nombre del producto a agregar:");
                         if (supermarketList.Contains(productToAdd)) // Check for duplicates
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("El producto ya está en la lista.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000); // Pause for 2 seconds to show the success message
-                            Console.Clear();
+                            WarningMessage("El producto ya está en la lista.");
                         }
                         else
                         {
                             supermarketList.Add(productToAdd); // Add product to the list
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Producto agregado exitosamente.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            SuccessMessage("Producto agregado exitosamente.");
                         }
                         break;
                     case 2:
                         string productToRemove = GetValidString("Ingrese el nombre del producto que desea eliminar:");
                         if (supermarketList.Remove(productToRemove)) // return true if the product was found and removed
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Producto eliminado exitosamente.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            SuccessMessage("Producto eliminado exitosamente.");
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("El producto no está en la lista.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            WarningMessage("El producto no está en la lista.");
                         }
                         break;
                     case 0:
                         Console.WriteLine("Saliendo de la lista de supermercado.");
                         break;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Opción inválida. Por favor seleccione una opción válida.");
-                        Console.ResetColor();
-                        Thread.Sleep(2000);
-                        Console.Clear();
+                        ErrorMessage("Opción inválida. Por favor seleccione una opción válida.");
                         break;
                 }
             } while (option != 0);
@@ -367,36 +347,24 @@ namespace Class_4
                 {
                     if (displayMatrix[row, col] == "❎" || displayMatrix[row, col] == "*")
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Ya has intentado esta posición. Intenta otra.");
-                        Console.ResetColor();
-                        Thread.Sleep(1000);
+                        WarningMessage("Ya has intentado esta posición. Intenta otra.");
                     }
                     else if (matrix[row, col] == "X")
                     {
                         displayMatrix[row, col] = "❎";
                         x--;
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("¡Has encontrado una x!");
-                        Console.ResetColor();
-                        Thread.Sleep(1000);
+                        SuccessMessage("¡Has encontrado una x!");
                     }
                     else
                     {
                         displayMatrix[row, col] = "*";
                         lives--;
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"No hay una x aquí. Te quedan {lives} vidas.");
-                        Console.ResetColor();
-                        Thread.Sleep(1000);
+                        ErrorMessage($"No hay una x aquí. Te quedan {lives} vidas.");
                     }
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Coordenadas inválidas. Por favor ingrese valores entre 0 y 9.");
-                    Console.ResetColor();
-                    Thread.Sleep(1000);
+                    WarningMessage("Coordenadas inválidas. Por favor ingrese valores entre 0 y 9.");
                 }
 
                 Console.Clear();
@@ -413,15 +381,11 @@ namespace Class_4
 
             if (x == 0)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("¡Felicidades! Has encontrado todas las x.");
-                Console.ResetColor();
+                SuccessMessage("¡Felicidades! Has encontrado todas las x.");
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Has perdido todas tus vidas. Fin del juego.");
-                Console.ResetColor();
+                ErrorMessage("Has perdido todas tus vidas. Fin del juego.");
                 Console.WriteLine("\nLa matriz completa era:");
                 for (int i = 0; i < 10; i++)
                 {
@@ -469,24 +433,17 @@ namespace Class_4
                         double studentGrade = GetValidDouble("Ingrese la nota del alumno (0-10):");
                         while (studentGrade < 0 || studentGrade > 10)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Nota inválida. Por favor ingrese una nota entre 0 y 10.");
-                            Console.ResetColor();
+                            ErrorMessage("Nota inválida. Por favor ingrese una nota entre 0 y 10.");
                             studentGrade = GetValidDouble("Ingrese la nota del alumno (0-10):");
                         }
                         studentGrades[studentName] = studentGrade; // Add or update the student's grade
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Alumno y nota agregados exitosamente.");
-                        Console.ResetColor();
-                        Thread.Sleep(2000);
+                        SuccessMessage("Alumno y nota agregados exitosamente.");
                         Console.Clear();
                         break;
                     case 2:
                         if (studentGrades.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("No hay notas disponibles para calcular el promedio.");
-                            Console.ResetColor();
+                            WarningMessage("No hay notas disponibles para calcular el promedio.");
                         }
                         else
                         {
@@ -497,9 +454,7 @@ namespace Class_4
                     case 3:
                         if (studentGrades.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("No hay notas disponibles para determinar el mejor y peor alumno.");
-                            Console.ResetColor();
+                            WarningMessage("No hay notas disponibles para determinar el mejor y peor alumno.");
                         }
                         else
                         {
@@ -513,10 +468,7 @@ namespace Class_4
                         Console.WriteLine("Saliendo de la gestión de notas de alumnos.");
                         break;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Opción inválida. Por favor seleccione una opción válida.");
-                        Console.ResetColor();
-                        Thread.Sleep(2000);
+                        ErrorMessage("Opción inválida. Por favor seleccione una opción válida.");
                         Console.Clear();
                         break;
                 }
@@ -553,46 +505,28 @@ namespace Class_4
                     case 1:
                         string clientToAdd = GetValidString("Ingrese el nombre de la persona a agregar a la fila:");
                         queue.Enqueue(clientToAdd); // Add person to the queue
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Persona agregada a la fila exitosamente.");
-                        Console.ResetColor();
-                        Thread.Sleep(2000);
-                        Console.Clear();
+                        SuccessMessage("Persona agregada a la fila exitosamente.");
                         break;
                     case 2:
                         if (attendingBoolean)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("Ya estás atendiendo a alguien. Finaliza la atención actual primero.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            WarningMessage("Ya estás atendiendo a alguien. Finaliza la atención actual primero.");
                         }
                         else if (queue.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("No hay personas en la fila para atender.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            WarningMessage("No hay personas en la fila para atender.");
                         }
                         else
                         {
                             currentClient = queue.Dequeue(); // Sacar a la persona de la fila y empezar a atenderla
                             attendingBoolean = true;
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Atendiendo a: {currentClient}");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            SuccessMessage($"Atendiendo a: {currentClient}");
                         }
                         break;
                     case 3:
                         if (!attendingBoolean && queue.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("No hay personas en la fila ni nadie siendo atendido.");
-                            Console.ResetColor();
+                            WarningMessage("No hay personas en la fila ni nadie siendo atendido.");
                         }
                         else
                         {
@@ -608,31 +542,19 @@ namespace Class_4
                         if (attendingBoolean)
                         {
                             attendingBoolean = false;
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Atención finalizada para: {currentClient}");
-                            Console.ResetColor();
-                            currentClient = ""; // Limpiar el cliente actual
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            SuccessMessage($"Atención finalizada para: {currentClient}");
+                            currentClient = ""; // Clear current client after finishing attention
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("No hay ninguna atención en curso para finalizar.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            ErrorMessage("No hay ninguna atención en curso para finalizar.");
                         }
                         break;
                     case 0:
                         Console.WriteLine("Saliendo de la gestión de la fila.");
                         break;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Opción inválida. Por favor seleccione una opción válida.");
-                        Console.ResetColor();
-                        Thread.Sleep(2000);
-                        Console.Clear();
+                        ErrorMessage("Opción inválida. Por favor seleccione una opción válida.");
                         break;
                 }
             } while (option != 0);
@@ -673,34 +595,26 @@ namespace Class_4
 
                         if (products.Contains(productToAdd))
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine($"El producto '{productToAdd}' ya existe en el inventario.");
-                            Console.ResetColor();
+                            WarningMessage($"El producto '{productToAdd}' ya existe en el inventario.");
 
                             int additionalQuantity = GetValidInt("Ingrese la cantidad a agregar:");
                             while (additionalQuantity < 0)
                             {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("La cantidad no puede ser negativa.");
-                                Console.ResetColor();
+                                ErrorMessage("La cantidad no puede ser negativa.");
                                 additionalQuantity = GetValidInt("Ingrese la cantidad a agregar:");
                             }
 
                             stock[productToAdd] += additionalQuantity;
                             actionsHistory.Push($"Agregado: {additionalQuantity} unidades de '{productToAdd}' (Total: {stock[productToAdd]})");
 
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Se agregaron {additionalQuantity} unidades. Stock actual: {stock[productToAdd]}");
-                            Console.ResetColor();
+                            SuccessMessage($"Se agregaron {additionalQuantity} unidades. Stock actual: {stock[productToAdd]}");
                         }
                         else
                         {
                             int quantity = GetValidInt("Ingrese la cantidad inicial:");
                             while (quantity < 0)
                             {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("La cantidad no puede ser negativa.");
-                                Console.ResetColor();
+                                ErrorMessage("La cantidad no puede ser negativa.");
                                 quantity = GetValidInt("Ingrese la cantidad inicial:");
                             }
 
@@ -708,9 +622,7 @@ namespace Class_4
                             stock[productToAdd] = quantity;
                             actionsHistory.Push($"Creado: Producto '{productToAdd}' con {quantity} unidades");
 
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Producto agregado exitosamente al inventario.");
-                            Console.ResetColor();
+                            SuccessMessage("Producto agregado exitosamente al inventario.");
                         }
 
                         Thread.Sleep(2000);
@@ -720,11 +632,7 @@ namespace Class_4
                     case 2:
                         if (products.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("No hay productos disponibles para vender.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            WarningMessage("No hay productos disponibles para vender.");
                             break;
                         }
 
@@ -732,11 +640,7 @@ namespace Class_4
 
                         if (!products.Contains(productToSell))
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine($"El producto '{productToSell}' no existe en el inventario.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            ErrorMessage($"El producto '{productToSell}' no existe en el inventario.");
                             break;
                         }
 
@@ -745,35 +649,25 @@ namespace Class_4
 
                         while (quantityToSell < 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("La cantidad no puede ser negativa.");
-                            Console.ResetColor();
+                            ErrorMessage("La cantidad no puede ser negativa.");
                             quantityToSell = GetValidInt("Ingrese la cantidad a vender:");
                         }
 
                         if (quantityToSell > stock[productToSell])
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine($"Stock insuficiente. Solo hay {stock[productToSell]} unidades disponibles.");
-                            Console.ResetColor();
-                            Thread.Sleep(2000);
-                            Console.Clear();
+                            ErrorMessage($"Stock insuficiente. Solo hay {stock[productToSell]} unidades disponibles.");
                         }
                         else
                         {
                             stock[productToSell] -= quantityToSell;
                             actionsHistory.Push($"Vendido: {quantityToSell} unidades de '{productToSell}' (Restante: {stock[productToSell]})");
 
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Venta realizada. Stock restante: {stock[productToSell]} unidades");
-                            Console.ResetColor();
+                            SuccessMessage($"Venta realizada. Stock restante: {stock[productToSell]} unidades");
 
                             // Si el stock llega a 0, opcionalmente se puede remover el producto
                             if (stock[productToSell] == 0)
                             {
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine($"⚠️ El producto '{productToSell}' se ha agotado.");
-                                Console.ResetColor();
+                                WarningMessage($"⚠️ El producto '{productToSell}' se ha agotado.");
                             }
 
                             Thread.Sleep(2000);
@@ -784,9 +678,7 @@ namespace Class_4
                     case 3:
                         if (products.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("\nEl inventario está vacío.");
-                            Console.ResetColor();
+                            WarningMessage("\nEl inventario está vacío.");
                         }
                         else
                         {
@@ -808,9 +700,7 @@ namespace Class_4
                     case 4:
                         if (actionsHistory.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("\nNo hay acciones registradas.");
-                            Console.ResetColor();
+                            WarningMessage("\nNo hay acciones registradas.");
                         }
                         else
                         {
@@ -831,11 +721,7 @@ namespace Class_4
                         break;
 
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Opción inválida. Por favor seleccione una opción válida.");
-                        Console.ResetColor();
-                        Thread.Sleep(2000);
-                        Console.Clear();
+                        ErrorMessage("Opción inválida. Por favor seleccione una opción válida.");
                         break;
                 }
             } while (option != 0);
@@ -912,6 +798,33 @@ namespace Class_4
                 Console.ResetColor();
             }
             return texto;
+        }
+
+        static void WarningMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Thread.Sleep(2000); // Pause for 2 seconds to show the success message
+            Console.Clear();
+        }
+
+        static void SuccessMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Thread.Sleep(2000); // Pause for 2 seconds to show the success message
+            Console.Clear();
+        }
+
+        static void ErrorMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Thread.Sleep(2000); // Pause for 2 seconds to show the error message
+            Console.Clear();
         }
     }
 }
